@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
+""" Simple escape room game for console.
+    The object is to search the room to find hidden objects and clues to solve the problems and escape."""
 
 from scenes import *
 
 
 def main():
+    # creates a list to use as your inventory
     inventory = []
-
+    # Starts scene one
     scene1()
-    while True:
+    while True:  # loops until game is over or player quits
         print_menu()
         answer = input("\nPlease select your choice 1-6"
                        "\n>>")
@@ -33,12 +36,11 @@ def main():
             with open('images/escaped.txt', 'r') as f:
                 for line in f:
                     print(line.rstrip())
-            print("\nCongratulations!!! you made it out of the room")
+            print("\nCongratulations!!! you made it out of the room\n")
             break
 
-    print("GAME OVER")
+    print("\nGAME OVER\n")
 
 
 if __name__ == "__main__":
     main()
-
