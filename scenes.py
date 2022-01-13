@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
+import os
+
+
+def clear_console():
+    command = 'clear'
+    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
+        command = 'cls'
+    os.system(command)
 
 
 def print_menu():
+    clear_console()
     print("\nWhat would you like to do?"
           "\n1. Examine desk"
           "\n2. Examine bookshelf"
@@ -13,15 +22,26 @@ def print_menu():
 
 
 def scene1():
-    print("You awake to find yourself in a strange room."
+    clear_console()
+    with open('images/intro.txt', 'r') as f:
+        for line in f:
+            print(line.rstrip())
+    print("\nYou awake to find yourself in a strange room."
           "\nThere are no windows and only one door with a keypad beside it."
-          "\nThere is a bookshelf, a desk, a light switch, and a coat rack with a single coat in the room with you.\n")
+          "\nThere is a bookshelf, a desk, a light switch, and a coat rack with a single coat in the room with "
+          "you.\n")
     input("\nPress enter to continue")
 
+
 def examine_desk(inv):
+    clear_console()
+    with open('images/desk.txt', 'r') as f:
+        for line in f:
+            print(line.rstrip())
     inventory = inv
     if 'blacklight' in inventory:
         print("You've already found what was hidden in the desk.")
+        input("\nPress enter to continue")
         return inventory
     elif 'key' in inventory:
         print("\nYou see a desk with a locked drawer and a key hole."
@@ -33,6 +53,7 @@ def examine_desk(inv):
                   "\nInside the unlocked desk you find a blacklight.\n"
                   "\nBlacklight has been added to your inventory.")
             inventory.append('blacklight')
+            input("\nPress enter to continue")
             return inventory
         elif answer.lower() == "n":
             return inventory
@@ -40,11 +61,15 @@ def examine_desk(inv):
             print("Invalid response: Please select y or n!")
     else:
         print("\nYou see a desk with a locked drawer and a key hole. You probably need to find a key.")
+        input("\nPress enter to continue")
         return inventory
-    input("\nPress enter to continue")
 
 
 def examine_bookshelf():
+    clear_console()
+    with open('images/bookshelf.txt', 'r') as f:
+        for line in f:
+            print(line.rstrip())
     print("\nThere are 5 rows of books but none of them will move."
           "\nOn the top shelf, you notice a five letter dial lock."
           "\nWould you like to try to guess the password? y/n")
@@ -54,6 +79,10 @@ def examine_bookshelf():
             password = input("\nPlease enter your guess or q to give up."
                              "\n>>")
             if password.lower() == "death":
+                clear_console()
+                with open('images/book_answer.txt', 'r') as f:
+                    for line in f:
+                        print(line.rstrip())
                 print("\nYou hear a click and the top row of books lifts up to reveal the following message:\n"
                       "\nI.B.N.F.E local 8251")
                 break
@@ -66,20 +95,29 @@ def examine_bookshelf():
 
 
 def examine_coatrack(inv):
+    clear_console()
+    with open('images/coat.txt', 'r') as f:
+        for line in f:
+            print(line.rstrip())
     inventory = inv
     if 'key' not in inventory:
         print("\nYou search through the coat and find a key hidden in one of the pockets."
               "\nI wonder what this key could be used for?\n"
               "\nkey has been added to your inventory.")
         inventory.append('key')
+        input("\nPress enter to continue")
         return inventory
     else:
         print("You don't see anything else in the jacket or on the coat rack.")
+        input("\nPress enter to continue")
         return inventory
-    input("\nPress enter to continue")
 
 
 def examine_keypad(inv):
+    clear_console()
+    with open('images/keypad.txt', 'r') as f:
+        for line in f:
+            print(line.rstrip())
     inventory = inv
     print("\nYou see a numerical keypad with the numbers 0-9."
           "\nWould you like to try to guess the password? y/n")
@@ -97,18 +135,26 @@ def examine_keypad(inv):
                 break
             else:
                 print("Incorrect password: Please try again.")
+        input("\nPress enter to continue")
         return inventory
     else:
         return inventory
-    input("\nPress enter to continue")
 
 
 def examine_lightswitch(inv):
+    clear_console()
+    with open('images/light.txt', 'r') as f:
+        for line in f:
+            print(line.rstrip())
     if 'blacklight' in inv:
         print("\nGreat! Now you can't see."
               "\nWould you like to use the blacklight? y/n")
         answer = input("\n>>")
         if answer.lower() == 'y':
+            clear_console()
+            with open('images/blacklight.txt', 'r') as f:
+                for line in f:
+                    print(line.rstrip())
             print("\nAs you turn on the blacklight, you see some writing on the wall with an arrow pointing to the "
                   "bookshelf."
                   '\nThe writting says "The debt that all men pay."')
@@ -119,4 +165,11 @@ def examine_lightswitch(inv):
     else:
         print("\nGreat! Now you can't see."
               "\nBetter turn that light back on.")
+    input("\nPress enter to continue")
+
+
+def view_inventory(inv):
+    clear_console()
+    for item in inv:
+        print(item)
     input("\nPress enter to continue")
