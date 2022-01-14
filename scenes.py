@@ -32,7 +32,8 @@ def scene1():
     print("\nYou awake to find yourself in a strange room."
           "\nThere are no windows and only one door with a keypad beside it."
           "\nThere is a bookshelf, a desk, a light switch, and a coat rack with a single coat in the room with "
-          "you.\n")
+          "you."
+          "\nSearch for clues and items to help you open the door and escape.")
     input("\nPress enter to continue")
 
 
