@@ -12,7 +12,7 @@ def main():
     scene1()
     while True:  # loops until game is over or player quits
         print_menu()
-        answer = input("\nPlease select your choice 1-6"
+        answer = input("\nPlease select your choice 1-5, i, or q"
                        "\n>>")
         if answer == '1':
             inventory = examine_desk(inventory)
