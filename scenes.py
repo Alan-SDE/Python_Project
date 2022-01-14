@@ -180,6 +180,11 @@ def examine_lightswitch(inv):
 # prints items in the players inventory
 def view_inventory(inv):
     clear_console()
-    for item in inv:
-        print(item)
-    input("\nPress enter to continue")
+    if len(inv) == 0:
+        print("\nThere is nothing in your inventory yet. Keep looking around.")
+        input("\nPress enter to continue.")
+    else:
+        print("\nYour inventory contains:")
+        for item in inv:
+            print(item)
+        input("\nPress enter to continue.")
