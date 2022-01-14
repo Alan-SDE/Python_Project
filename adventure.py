@@ -28,8 +28,6 @@ def main():
             view_inventory(inventory)
         elif answer.lower() == 'q':
             break
-        else:
-            print("Invalid selection: Please enter 1-5, i, or q.")
 
         if 'open' in inventory:
             clear_console()
